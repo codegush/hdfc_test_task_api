@@ -1,0 +1,2 @@
+development:
+  AUTH_SECRET: blah!
