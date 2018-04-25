@@ -1,2 +1,4 @@
 development:
   AUTH_SECRET: blah!
+  GOOGLE_CLIENT_ID: 586067862296-pttgljei109ujalg8kumqiepop4tdo2a.apps.googleusercontent.com
+  GOOGLE_CLIENT_SECRET: ug7mg7n_RUG8wxQIz-pRHcZz
