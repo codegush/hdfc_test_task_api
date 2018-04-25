@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   has_many :identities
 
-  validates :email, format: { with: /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/ }
+  validates :email, uniqueness: true, format: { with: /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/ }
   validates :password, confirmation: true 
   validates :password_confirmation, presence: true
 
