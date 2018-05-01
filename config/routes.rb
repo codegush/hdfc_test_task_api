@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :users
       post 'login', to: 'sessions#create'
       get 'auth/:provider/callback' => 'sessions#create'
+      get 'users/profile' => 'users#show'
   	end
   end
 end

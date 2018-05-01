@@ -9,7 +9,7 @@ class Auth
     exp = Time.now.to_i + 4 * 3600
     iat = Time.now.to_i
 
-    payload = payload.merge({ exp: exp, iss: iss, iat: iat })
+    payload = payload.merge({ exp: exp, iss: ISSUER, iat: iat })
     JWT.encode(
       payload,
       auth_secret,

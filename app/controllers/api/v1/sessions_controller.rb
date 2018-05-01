@@ -29,32 +29,29 @@ module Api
             # Cases for non-logged in users
             if @identity.user.present?
               # If identity is already linked
-              jwt = Auth.issue({ user: user.id })
-              render json: { jwt: jwt }, status: :ok
+              jwt = Auth.issue({ user: @identity.user.id })
+              redirect_to 'http://localhost:5000/auth?' + { token: jwt }.to_query
+              # render json: { jwt: jwt }, status: :ok
             else
               # If identity is not linked, create a user and associate
               # the identity with the user
-              user = User.find_by_email(auth['info']['email'])
-
-              unless user
-                User.create_with_omniauth(auth['info'])
-                @identity.user = user
-                @identity.save
-              end
+              @identity.save_info(auth)
               puts 'New user created and associated with the user'
-              jwt = Auth.issue({ user: user.id })
-              render json: { jwt: jwt }, status: :ok
+              jwt = Auth.issue({ user: @identity.user.id })
+              redirect_to 'http://localhost:5000/auth?' + { token: jwt }.to_query
+              # render json: { jwt: jwt }, status: :ok
             end
           end
-        end
+        end 
 
 
         # Normal login process
-        if auth_params[:email] && auth_params[:password]
-          user = User.find_by(email: auth_params[:email])
-          if user && user.authenticate(auth_params[:password])
+        login_params = auth_params[:auth]
+        if login_params && login_params[:email] && login_params[:password]
+          user = User.find_by(email: login_params[:email])
+          if user && user.authenticate(login_params[:password])
             jwt = Auth.issue({ user: user.id })
-            render json: {jwt: jwt}
+            render json: { token: jwt }
           else
             render_http_error_code(:unprocessable_entity, message: 'Wrong credentials')
           end
@@ -64,7 +61,8 @@ module Api
       private
 
       def auth_params
-        params.require(:auth).permit(:email, :password)
+        params.permit(:code, :state, :provider, {:auth => [:email, :password]}, :oauth_token, :oauth_verifier)
+        # params.require(:auth).permit(:email, :password)
       end
     end
   end
