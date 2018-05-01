@@ -30,7 +30,7 @@ module Api
             if @identity.user.present?
               # If identity is already linked
               jwt = Auth.issue({ user: @identity.user.id })
-              redirect_to 'http://localhost:5000/auth?' + { token: jwt }.to_query
+              redirect_to "#{ENV['REACT_APP_HOST']}/auth?" + { token: jwt }.to_query
               # render json: { jwt: jwt }, status: :ok
             else
               # If identity is not linked, create a user and associate
@@ -38,7 +38,7 @@ module Api
               @identity.save_info(auth)
               puts 'New user created and associated with the user'
               jwt = Auth.issue({ user: @identity.user.id })
-              redirect_to 'http://localhost:5000/auth?' + { token: jwt }.to_query
+              redirect_to "#{ENV['REACT_APP_HOST']}/auth?" + { token: jwt }.to_query
               # render json: { jwt: jwt }, status: :ok
             end
           end

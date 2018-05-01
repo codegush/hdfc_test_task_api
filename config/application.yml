@@ -1,5 +1,6 @@
 development:
   AUTH_SECRET: blah!
+  REACT_APP_HOST: http://localhost:5000
   GOOGLE_CLIENT_ID: 586067862296-pttgljei109ujalg8kumqiepop4tdo2a.apps.googleusercontent.com
   GOOGLE_CLIENT_SECRET: ug7mg7n_RUG8wxQIz-pRHcZz
   FACEBOOK_CLIENT_ID: '177870249699951'
@@ -14,6 +15,7 @@ development:
   INSTAGRAM_CLIENT_SECRET: 41983fa70597483b81356a781559fd64
 production:
   AUTH_SECRET: blahblah!
+  REACT_APP_HOST: https://hdfcapi.herokuapp.com
   GOOGLE_CLIENT_ID: 586067862296-pttgljei109ujalg8kumqiepop4tdo2a.apps.googleusercontent.com
   GOOGLE_CLIENT_SECRET: ug7mg7n_RUG8wxQIz-pRHcZz
   FACEBOOK_CLIENT_ID: '177870249699951'
