@@ -1,6 +1,8 @@
 # HDFC Test Task API
 This api is a test task demonstration of a user getting logged in using oauth apps provided by various social networks, i.e. facebook, twitter, github, linkedin, google and instagram
 
+### Heroku link: [API](https://hdfcapi.herokuapp.com/)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
