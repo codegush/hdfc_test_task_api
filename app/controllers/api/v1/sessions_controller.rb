@@ -44,7 +44,6 @@ module Api
           end
         end 
 
-        debugger
         # Normal login process
         login_params = auth_params[:auth]
         if login_params && login_params[:email] && login_params[:password]
