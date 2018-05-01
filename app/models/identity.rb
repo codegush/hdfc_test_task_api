@@ -10,7 +10,7 @@ class Identity < ApplicationRecord
   end
 
   def save_info(auth)
-  	provider = auth[:provider]
+    provider = auth[:provider]
     info = auth[:info]
     user = User.check_with_provider(auth) || User.create_with_omniauth(info)
     update(

@@ -2,7 +2,7 @@ module Api
   module V1
     class SessionsController < Api::V1::BaseController
 
-      skip_before_action :authenticate, only: [:create]
+      skip_before_action :authenticate, only: [:create, :failure]
       
       def create
         # Omniauth login process
@@ -55,6 +55,10 @@ module Api
             render_http_error_code(:unprocessable_entity, message: 'Wrong credentials')
           end
         end 
+      end
+
+      def failure
+        render json: { message: 'Error while logging in, please check with admin' }, status: 401
       end
 
       private
