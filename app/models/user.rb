@@ -38,9 +38,9 @@ class User < ApplicationRecord
   end
 
   def self.save_by_identity(auth)
-    user = find_or_initialize_by(email: auth[:email]) do |u|
-      u.password = auth[:password]
-      u.password_confirmation = auth[:password_confirmation]
-    end
+    user = find_or_initialize_by(email: auth[:email])
+    user.password = auth[:password]
+    user.password_confirmation = auth[:password_confirmation]
+    user.save ? user : nil
   end
 end
