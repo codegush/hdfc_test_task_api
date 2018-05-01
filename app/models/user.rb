@@ -11,8 +11,9 @@ class User < ApplicationRecord
 
   def self.create_with_omniauth(user_info)
     password = SecureRandom.hex(8)
+    email = user_info[:name] == 'Open Graph Test User' ? 'open_jekyvyw_user@tfbnw.net' : user_info[:email]
     create(
-      email: user_info['email'],
+      email: email,
       username: user_info['nickname'],
       password: password,
       password_confirmation: password
